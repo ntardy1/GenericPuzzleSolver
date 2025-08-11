@@ -124,7 +124,7 @@ int main(){
                 }
             }
         }
-        num_solved_elements += std::count_if(masterVector[i].begin(), masterVector[i].end(), [](int i) { return i != 0; });
+        num_solved_elements += std::count_if(masterVector[i].begin(), masterVector[i].end(), [](int k) { return k != 0; });
     }
 
     std::cout << std::format("INPUT BOARD ({}/{}):", num_solved_elements, total_element_count) << std::endl;
@@ -145,7 +145,6 @@ int main(){
         if (std::find(masterVector[row].begin(), masterVector[row].end(), 0) == masterVector[row].end()){ // if the row has been completely solved
             if (row == 8){ // at the end of the board, update the solution counter
                 counter++;
-                std::cout << "HERE" << std::endl;
             } else { // not at the end of the board, update both the solution counter and row number
                 counter++;
                 row++;
@@ -234,7 +233,7 @@ int main(){
                         }
                     } else if (row == 1 || row == 4 || row == 7){ // if second row in the local group
                         for (int i = -1; i < 2; i++){
-                            for (int j = -1; j < 2; j++){
+                            for (int j = -2; j < 1; j++){
                                 if (masterVector[row + i][column + j] != 0 && std::find(candidates.begin(), candidates.end(), masterVector[row + i][column + j]) != candidates.end()){
                                     candidates.erase(candidates.begin() + getIndex(masterVector[row + i][column + j], candidates));
                                 }
@@ -265,7 +264,6 @@ int main(){
             }
         }
     }
-    std::cout << "HERE" << std::endl;
     if (row == 9){ // if the end of the board has been reached and not solved
         std::cout << "INCOMPLETE SOLUTION: \n";
         printBoard(masterVector);
