@@ -124,7 +124,7 @@ int main(){
                 }
             }
         }
-        num_solved_elements += std::count_if(masterVector[i].begin(), masterVector[i].end(), [](int k) { return k != 0; });
+        num_solved_elements += std::count_if(masterVector[i].begin(), masterVector[i].end(), [](int i) { return i != 0; });
     }
 
     std::cout << std::format("INPUT BOARD ({}/{}):", num_solved_elements, total_element_count) << std::endl;
@@ -265,10 +265,9 @@ int main(){
         }
     }
     if (row == 9){ // if the end of the board has been reached and not solved
-        std::cout << "INCOMPLETE SOLUTION: \n";
-        printBoard(masterVector);
+        std::cout << "INCOMPLETE SOLUTION:" << std::endl;
     } else { // the board has been solved
-        std::cout << "BOARD SOLVED: \n";
-        printBoard(masterVector);
+        std::cout << "BOARD SOLVED:" << std::endl;
     }
+    printBoard(masterVector);
 }
