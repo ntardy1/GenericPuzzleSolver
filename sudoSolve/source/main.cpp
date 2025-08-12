@@ -1,3 +1,4 @@
+// C++ Headers
 #include <algorithm>
 #include <format>
 #include <iostream>
@@ -5,6 +6,9 @@
 #include <string>
 #include <stdlib.h>
 #include <vector>
+
+// Local Headers
+#include "sudoSolveConfig.h"
 
 const int BOARD_ROW_NUM = 9; // number of rows on the board
 const int BOARD_COLUMN_NUM = 9; // number of columns on the board
@@ -48,6 +52,17 @@ int main(){
     std::string eighth; // string to hold representation of the eighth board row
     std::string ninth; // string to hold representation of the ninth board row
 
+    // Board Input (0s indicate empty spot)
+    first   = "200410007"; // first row of the board
+    second  = "080700002"; // second row of the board
+    third   = "000900050"; // third row of the board
+    fourth  = "007200609"; // fourth row of the board
+    fifth   = "010006500"; // fifth row of the board
+    sixth   = "000000080"; // sixth row of the board
+    seventh = "005602490"; // seventh row of the board
+    eighth  = "006800025"; // eighth row of the board
+    ninth   = "700540060"; // ninth row of the board
+
     std::array<std::array<int, BOARD_COLUMN_NUM>, BOARD_ROW_NUM> masterVector = {
         {{0,0,0,0,0,0,0,0,0},
          {0,0,0,0,0,0,0,0,0},
@@ -59,38 +74,10 @@ int main(){
          {0,0,0,0,0,0,0,0,0},
          {0,0,0,0,0,0,0,0,0}}}; // 2D array representing the state of the board
 
-    /*
-    std::cout << "Enter a zero in any empty spots" << "\n";
-    std::cout << "1st Row: ";
-    std::cin >> first;
-    std::cout << "2nd Row: ";
-    std::cin >> second;
-    std::cout << "3rd Row: ";
-    std::cin >> third;
-    std::cout << "4th Row: ";
-    std::cin >> fourth;
-    std::cout << "5th Row: ";
-    std::cin >> fifth;
-    std::cout << "6th Row: ";
-    std::cin >> sixth;
-    std::cout << "7th Row: ";
-    std::cin >> seventh;
-    std::cout << "8th Row: ";
-    std::cin >> eighth;
-    std::cout << "9th Row: ";
-    std::cin >> ninth;
-    */
+    int num_solved_elements = 0; // the number of unsolved elements remaining on the board
+    int total_element_count = BOARD_ROW_NUM*BOARD_COLUMN_NUM; // total number of elements on the board
 
-    // Board Input (0s indicate empty spot)
-    first   = "200410007"; // first row of the board
-    second  = "080700002"; // second row of the board
-    third   = "000900050"; // third row of the board
-    fourth  = "007200609"; // fourth row of the board
-    fifth   = "010006500"; // fifth row of the board
-    sixth   = "000000080"; // sixth row of the board
-    seventh = "005602490"; // seventh row of the board
-    eighth  = "006800025"; // eighth row of the board
-    ninth   = "700540060"; // ninth row of the board
+    std::cout << "Program Version: " << sudoSolve_VERSION_MAJOR << "." << sudoSolve_VERSION_MINOR << std::endl;
 
     // Populate masterVector with board input
     for (int i = 0; i < first.length(); i++){
@@ -104,9 +91,6 @@ int main(){
         masterVector[7][i] = static_cast<int>(eighth[i] - '0');
         masterVector[8][i] = static_cast<int>(ninth[i] - '0');
     }
-
-    int num_solved_elements = 0; // the number of unsolved elements remaining on the board
-    int total_element_count = BOARD_ROW_NUM*BOARD_COLUMN_NUM; // total number of elements on the board
 
     int currentNumber;
     // Check to ensure valid entries in each row
