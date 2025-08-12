@@ -10,8 +10,8 @@ set(SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/source") # define source directory
 file(GLOB sudoSolve_SOURCES "${SOURCE_DIR}/*.cpp") # define source files for sudoSolve target
 
 add_executable(sudoSolve ${sudoSolve_SOURCES})
-add_subdirectory(source)
+add_subdirectory(source) # ensures the source library (i.e., the files in the source directory) get built
 target_link_libraries(sudoSolve source) # link the source directory to the executable
 target_include_directories(sudoSolve PUBLIC
-                           "${PROJECT_BINARY_DIR}") # include directories
-                        #    "${PROJECT_SOURCE_DIR}/include") # include directories
+                           "${PROJECT_BINARY_DIR}"
+                           "${PROJECT_SOURCE_DIR}/include") # include directories
