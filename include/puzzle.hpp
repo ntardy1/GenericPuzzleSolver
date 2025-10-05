@@ -2,7 +2,6 @@
 #include <algorithm>
 #include <array>
 #include <cstdlib>
-#include <format>
 #include <iostream>
 #include <iterator>
 #include <string>
