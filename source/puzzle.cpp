@@ -22,7 +22,7 @@ std::pair<bool, int> Puzzle::check_state() {
                 for (int row_1 = 0; row_1 < m_board.size(); row_1++) { // iterate through rows on the board
                     if (current_number == m_board[row_1][column_0] && row_0 != row_1) {
                         return_pair.first = false; // the state of the board is not valid
-                        std::cerr << std::format("Error in column: {}", column_0 + 1) << std::endl;
+                        std::cerr << "Error in column: " << column_0 + 1 << std::endl;
                         return return_pair;
                     }
                 }
@@ -30,7 +30,7 @@ std::pair<bool, int> Puzzle::check_state() {
                 for (int column_1 = 0; column_1 < m_board[row_0].size(); column_1++){ // iterate through columns on the board
                     if (current_number == m_board[row_0][column_1] && column_0 != column_1){
                         return_pair.first = false; // the state of the board is not valid
-                        std::cerr << std::format("Error in row: {}", row_0 + 1) << std::endl;
+                        std::cerr << "Error in row: " << row_0 + 1 << std::endl;
                         return return_pair;
                     }
                 }
@@ -43,7 +43,7 @@ std::pair<bool, int> Puzzle::check_state() {
                             NULL;
                         } else if (current_number == m_board[row_0 + row_1][column_0 + column_1]) {
                             return_pair.first = false; // the local group is not valid
-                            std::cerr << std::format("Error in local group: ({}, {})", row_0/3, column_0/3) << std::endl;
+                            std::cerr << "Error in local group: (" << row_0/3 << ", " << column_0/3 << ")" << std::endl;
                             return return_pair;
                         }
                     }
@@ -71,7 +71,7 @@ bool Puzzle::populate_board(const std::array<std::string, BOARD_ROW_NUM> &rows) 
         m_board[7][i] = static_cast<int>(rows[7][i] - '0'); // populate eighth row
         m_board[8][i] = static_cast<int>(rows[8][i] - '0'); // populate ninth row
     }
-    std::pair<bool, int> m_state_pair = check_state(); // check the state of the input board (to ensure valid configuration)
+    m_state_pair = check_state(); // check the state of the input board (to ensure valid configuration)
     return m_state_pair.first;
 }
 
@@ -102,7 +102,8 @@ void Puzzle::print_board() {
 
 void Puzzle::solve_board() {
 
-    std::cout << std::format("INPUT BOARD ({}/{}):", m_state_pair.second, TOTAL_ELEMENT_COUNT) << std::endl;
+    std::cout << "INPUT BOARD (" << m_state_pair.second << "/" \
+                                 << TOTAL_ELEMENT_COUNT << "):" << std::endl;
     print_board();
 
     int counter = 0; // the number of rows that have been solved
@@ -167,7 +168,8 @@ void Puzzle::solve_board() {
         }
     }
     if (row == 9){ // if the end of the board has been reached and not solved
-        std::cout << std::format("INCOMPLETE SOLUTION ({}/{}):", m_state_pair.second, TOTAL_ELEMENT_COUNT) << std::endl;
+        std::cout << "INCOMPLETE SOLUTION (" << m_state_pair.second << "/" \
+                                             << TOTAL_ELEMENT_COUNT << "):" << std::endl;
     } else { // the board has been solved
         std::cout << "BOARD SOLVED:" << std::endl;
     }
