@@ -54,12 +54,12 @@ std::pair<bool, int> Puzzle::check_state() {
     return return_pair;
 }
 
-int Puzzle::get_index(const int &target, const std::vector<int> &vector) {
+int Puzzle::get_index(const int& target, const std::vector<int>& vector) {
     std::vector<int>::const_iterator target_element_it = std::find(vector.begin(), vector.end(), target); 
     return std::distance(vector.begin(), target_element_it);
 }
 
-bool Puzzle::populate_board(const std::array<std::string, BOARD_ROW_NUM> &rows) {
+bool Puzzle::populate_board(const std::array<std::string, BOARD_ROW_NUM>& rows) {
     for (int i = 0; i < rows.size(); i++) {
         m_board[0][i] = static_cast<int>(rows[0][i] - '0'); // populate first row
         m_board[1][i] = static_cast<int>(rows[1][i] - '0'); // populate second row
