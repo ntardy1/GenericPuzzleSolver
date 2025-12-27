@@ -1,0 +1,11 @@
+PROJECT_NAME = "Sudoku Solver"
+PROJECT_NUMBER = v2.0
+PROJECT_BRIEF = "Containerized, command-line Sudoku solver"
+OUTPUT_DIRECTORY = build/doc
+INPUT = source/ include/
+RECURSIVE = YES
+FILE_PATTERNS = *.cpp *.hpp
+# Whether or not to generate HTML output
+GENERATE_HTML = YES # default
+# Where to put HTML output (if desired) relative to OUTPUT_DIRECTORY
+HTML_OUTPUT = html # default

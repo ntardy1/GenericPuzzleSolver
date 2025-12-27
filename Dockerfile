@@ -10,7 +10,7 @@ WORKDIR /app
 COPY . .
 
 # Create build directory & change into it
-RUN mkdir build
+RUN mkdir --parents build
 WORKDIR /app/build
 
 # CMake commands to configure & build
