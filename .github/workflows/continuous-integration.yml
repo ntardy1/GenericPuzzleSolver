@@ -1,0 +1,13 @@
+name: continuous-integration
+on:
+  pull_request:
+    types: [opened, reopened]
+    branchs:
+      - main
+jobs:
+  configure:
+    steps:
+      - uses: actions/checkout@v4
+  build:
+    steps:
+      - run: ./build.sh
