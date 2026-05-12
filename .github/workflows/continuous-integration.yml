@@ -5,11 +5,8 @@ on:
     branchs:
       - main
 jobs:
-  configure:
-    runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v4
   build:
     runs-on: ubuntu-latest
       steps:
+        - uses: actions/checkout@v4
         - run: ./build.sh
