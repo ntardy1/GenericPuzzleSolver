@@ -3,7 +3,7 @@
 # This stage contains all the tools needed to compile the code
 # Ubuntu 22.04 Base Image (Docker Official Image)
 # --------------------------------------------------------------
-FROM ubuntu:22.04 AS development
+FROM ubuntu:22.04 AS build
 
 # Install development tools
 RUN apt-get update && \
@@ -37,6 +37,9 @@ FROM ubuntu:22.04 AS release
 
 # Copy the executable from the previous stage
 COPY --from=development /app/build/sudoSolve /usr/local/bin/sudoSolve
+
+# Copy boost shared-object files from the previous stage
+COPY --from=development /usr/lib/x86_64-linux-gnu/libboost* /usr/lib
 
 # Copy the input files from the previous stage
 COPY --from=development /app/input/* /usr/local/input/

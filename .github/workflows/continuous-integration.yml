@@ -8,4 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: ./build.sh
+      - name: Build release image
+        run: docker build --tag sudosolve:release .
+      - name: Run application
+        run: docker run sudosolve:release
