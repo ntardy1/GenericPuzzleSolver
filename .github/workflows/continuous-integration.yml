@@ -1,0 +1,14 @@
+name: continuous-integration
+on:
+  pull_request:
+    types: [opened, reopened]
+    branches: [ "main" ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build release image
+        run: docker build --tag sudosolve:release .
+      - name: Run application
+        run: docker run sudosolve:release
