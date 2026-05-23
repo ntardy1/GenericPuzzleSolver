@@ -2,9 +2,9 @@ name: continuous-integration
 on:
   pull_request:
     types: [opened, reopened]
-    branches: [ "main" ]
+    branches: [ $default-branch ]
 jobs:
-  build:
+  build_app:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -12,3 +12,29 @@ jobs:
         run: docker build --tag sudosolve:release .
       - name: Run application
         run: docker run sudosolve:release
+  build_docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Doxygen documentation
+        run: |
+          mkdir --parents build/docs
+          docker run --volume "$(pwd)":/data --rm hrektts/doxygen doxygen Doxyfile
+      - name: Upload Doxygen output as artifact
+        uses: actions/upload-pages-artifact@v3
+        id: doxygen_output
+        with:
+          path: build/docs/
+  deploy_docs:
+    needs: build_docs
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.output.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub pages
+        id: doxygen_output
+        uses: actions/deploy-pages@v4

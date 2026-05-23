@@ -1,7 +1,7 @@
 PROJECT_NAME = "Sudoku Solver"
 PROJECT_NUMBER = v2.0
 PROJECT_BRIEF = "Containerized, command-line Sudoku solver"
-OUTPUT_DIRECTORY = build/doc
+OUTPUT_DIRECTORY = build/docs
 INPUT = source/ include/
 RECURSIVE = YES
 FILE_PATTERNS = *.cpp *.hpp
