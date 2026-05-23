@@ -2,7 +2,7 @@ name: continuous-integration
 on:
   pull_request:
     types: [opened, reopened]
-    branches: [$default-branch]
+    branches: [ "main" ]
 jobs:
   build_app:
     runs-on: ubuntu-latest
