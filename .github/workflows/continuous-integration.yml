@@ -21,7 +21,7 @@ jobs:
           mkdir --parents build/docs
           docker run --volume "$(pwd)":/data --rm hrektts/doxygen doxygen Doxyfile
       - name: Upload Doxygen output as artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         id: doxygen_output
         with:
           path: build/docs/
