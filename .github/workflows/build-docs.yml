@@ -4,6 +4,7 @@ jobs:
   build_docs:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: Build Doxygen documentation
         run: |
           mkdir --parents build/docs
