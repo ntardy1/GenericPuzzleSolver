@@ -6,10 +6,12 @@ jobs:
   build_app:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - uses: ./.github/workflows/build-app.yml
   build_docs:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - uses: ./.github/workflows/build-docs.yml
   deploy_docs:
     needs: build_docs
