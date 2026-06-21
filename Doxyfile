@@ -1,6 +1,5 @@
-PROJECT_NAME = "Sudoku Solver"
-PROJECT_NUMBER = v2.0
-PROJECT_BRIEF = "Containerized, command-line Sudoku solver"
+PROJECT_NAME = "Generic Puzzle Solver"
+PROJECT_NUMBER = v0.0.1
 OUTPUT_DIRECTORY = build/docs
 INPUT = source/ include/
 RECURSIVE = YES

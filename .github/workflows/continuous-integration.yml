@@ -2,17 +2,53 @@ name: continuous-integration
 on:
   push:
     branches: [ "main" ]
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [ "main" ]
+
 jobs:
+  set_publish_path:
+    runs-on: ubuntu-latest
+    outputs:
+      publish_path: ${{ steps.set.outputs.publish_path }}
+    steps:
+      - name: Set publish path
+        id: set
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            echo "publish_path=GenericPuzzleSolver" >> $GITHUB_OUTPUT
+          else
+            echo "publish_path=GenericPuzzleSolver/pr-${{ github.event.pull_request.number }}" >> $GITHUB_OUTPUT
+          fi
+
   build_app:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: ./.github/workflows/build-app.yml
+      - name: Build release image
+        run: docker build --tag sudosolve:release .
+      - name: Run application
+        run: docker run sudosolve:release
+
   build_docs:
+    needs: set_publish_path
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: ./.github/workflows/build-docs.yml
+      - name: Build Doxygen documentation
+        run: |
+          mkdir --parents build/docs
+          docker run --volume "$(pwd)":/data --rm hrektts/doxygen doxygen Doxyfile
+      - name: Prepare artifact directory
+        run: |
+          mkdir --parents build/site/${{ needs.set_publish_path.outputs.publish_path }}
+          mv build/docs/html/* build/site/${{ needs.set_publish_path.outputs.publish_path }}/ || true
+      - name: Upload Doxygen output as artifact
+        uses: actions/upload-pages-artifact@v4
+        id: deployment
+        with:
+          path: build/site/
+
   deploy_docs:
     needs: build_docs
     permissions:
@@ -20,9 +56,9 @@ jobs:
       id-token: write
     environment:
       name: github-pages
-      url: ${{ steps.deployment.output.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub pages
-        id: doxygen_output
+        id: deployment
         uses: actions/deploy-pages@v4
