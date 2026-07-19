@@ -1,0 +1,10 @@
+name: verify-pull-request
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [ "main" ]
+jobs:
+  build_app:
+    uses: ./.github/workflows/build-app.yml
+  build_docs:
+    uses: ./.github/workflows/build-docs.yml
