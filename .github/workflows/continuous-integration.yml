@@ -1,14 +1,15 @@
 name: continuous-integration
 on:
-  pull_request:
-    types: [opened, reopened]
+  push:
     branches: [ "main" ]
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Build release image
-        run: docker build --tag sudosolve:release .
-      - name: Run application
-        run: docker run sudosolve:release
+  build_app:
+    uses: ./.github/workflows/build-app.yml
+  build_docs:
+    uses: ./.github/workflows/build-docs.yml
+  deploy_docs:
+    needs: build_docs
+    permissions:
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/deploy-docs.yml

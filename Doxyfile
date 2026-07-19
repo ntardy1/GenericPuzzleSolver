@@ -1,0 +1,10 @@
+PROJECT_NAME = "Generic Puzzle Solver"
+PROJECT_NUMBER = v0.0.1
+OUTPUT_DIRECTORY = build/docs
+INPUT = source/ include/
+RECURSIVE = YES
+FILE_PATTERNS = *.cpp *.hpp
+# Whether or not to generate HTML output
+GENERATE_HTML = YES # default
+# Where to put HTML output (if desired) relative to OUTPUT_DIRECTORY
+HTML_OUTPUT = html # default
