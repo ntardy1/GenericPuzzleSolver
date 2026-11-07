@@ -10,7 +10,7 @@ WORKDIR /app
 COPY . .
 
 # Create build directory & change into it
-RUN mkdir build
+RUN mkdir --parents build
 WORKDIR /app/build
 
 # CMake commands to configure & build
@@ -20,7 +20,7 @@ RUN cmake .. && cmake --build .
 FROM ubuntu:22.04 AS release
 
 # Copy the executable from the previous stage
-COPY --from=build /app/build/sudoSolve /usr/local/bin/sudoSolve
+COPY --from=build /app/build/bin/sudoSolve /usr/local/bin/sudoSolve
 
 # Copy boost shared-object files from the previous stage
 COPY --from=build /usr/lib/x86_64-linux-gnu/libboost* /usr/lib
