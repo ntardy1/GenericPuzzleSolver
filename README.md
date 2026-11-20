@@ -1,4 +1,4 @@
-# Generic Puzzle Solver (`GenericPuzzleSolver`)
+# Generic Puzzle Solver
 
 Generic Puzzle Solver is a containerized, command-line application for solving puzzles using an object-oriented framework. The application can be built and run in either a `release` or `development` stage; the former contains only the executable binary and its runtime dependencies, while the latter contains additional tools useful for development (e.g., `gdb`).
 

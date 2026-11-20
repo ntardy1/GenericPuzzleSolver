@@ -32,13 +32,11 @@ file(GLOB GPS_SOURCES "${SOURCE_DIR}/*.cpp")
 ########################### Executable Configuration ###########################
 # Define the executable with the top-level source files
 add_executable(GPS ${GPS_SOURCES})
-# Add subdirectories to the build
-add_subdirectory(leetcode)
+# Add the Sudoku module to the build
 add_subdirectory(sudosolve)
 # Link the executable against required libraries
 target_link_libraries(GPS PRIVATE
                       Boost::program_options
-                      leetcode
                       sudosolve)
 # Include directories
 target_include_directories(GPS PUBLIC
