@@ -1,6 +1,6 @@
-# Sudoku Solver (`sudoSolve`)
+# Generic Puzzle Solver (`GenericPuzzleSolver`)
 
-Sudoku Solver is a containerized, command-line application for solving [Sudoku](https://en.wikipedia.org/wiki/Sudoku) puzzles that uses an object-oriented framework. The application can be built and run in either a `release` or `development` stage; the former contains only the executable binary and its runtime dependencies, while the latter contains additional tools useul for development (e.g., `gdb`).
+Generic Puzzle Solver is a containerized, command-line application for solving puzzles using an object-oriented framework. The application can be built and run in either a `release` or `development` stage; the former contains only the executable binary and its runtime dependencies, while the latter contains additional tools useful for development (e.g., `gdb`).
 
 ## Prerequisites
 - [`git`](https://git-scm.com/) (to clone the repository)
@@ -8,20 +8,20 @@ Sudoku Solver is a containerized, command-line application for solving [Sudoku](
 
 ## Build (Release)
 ``` bash
-docker build -t sudosolve:release .
+docker build -t genericpuzzlesolver:release .
 ```
 
 ## Run (Release)
 ``` bash
-docker run -it sudosolve:release
+docker run -it genericpuzzlesolver:release
 ```
 
 ## Build (Development)
 ``` bash
-docker build --target development -t sudosolve:development .
+docker build --target development -t genericpuzzlesolver:development .
 ```
 
 ## Run (Development)
 ``` bash
-docker run -it sudosolve:development
+docker run -it genericpuzzlesolver:development
 ```

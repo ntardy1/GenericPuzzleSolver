@@ -20,13 +20,13 @@ RUN cmake .. && cmake --build .
 FROM ubuntu:22.04 AS release
 
 # Copy the executable from the previous stage
-COPY --from=build /app/build/bin/sudoSolve /usr/local/bin/sudoSolve
+COPY --from=build /app/build/bin/GPS /usr/local/bin/GPS
 
 # Copy boost shared-object files from the previous stage
 COPY --from=build /usr/lib/x86_64-linux-gnu/libboost* /usr/lib
 
 # Copy the input files from the previous stage
-COPY --from=build /app/input/* /usr/local/input/
+COPY --from=build /app/sudosolve/input/puzzles.txt /usr/local/input/puzzles.txt
 
 # Install minimal runtime dependencies
 RUN apt-get update && apt-get install -y libc6 libstdc++6 && \
@@ -37,4 +37,4 @@ rm -rf /var/lib/apt/lists/*
 WORKDIR /usr/local/bin/
 
 # Set the executable as the main command
-ENTRYPOINT ["/usr/local/bin/sudoSolve"]
+ENTRYPOINT ["/usr/local/bin/GPS"]

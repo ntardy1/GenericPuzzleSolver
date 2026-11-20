@@ -31,7 +31,7 @@ build() {
         "doc")
             buildDoc
             ;;
-        "sudoSolve")
+        "GenericPuzzleSolver")
             buildApplication
             ;;
         *)
@@ -44,10 +44,10 @@ printHelp() {
     printf "Usage: %s [options]\n" $0
     printf "Options:\n"
     printf "  -p [ --project ] <PROJECT>
-            \t\tProject to build. One of: [doc, sudoSolve].
+            \t\tProject to build. One of: [doc, GenericPuzzleSolver].
             \t\tDefaults to building all if not provided.\n"
     printf "  -t [ --target ] <TARGET>
-            \t\tTarget of project to build. Only available for project "sudoSolve".
+            \t\tTarget of project to build. Only available for project "GenericPuzzleSolver".
             \t\tPassed to --target option of docker build.\n"
     exit 0
 }

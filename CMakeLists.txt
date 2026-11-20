@@ -1,8 +1,8 @@
-# ============================ PROJECT INFORMATION =============================
+############################## Project Information #############################
 # Minimum version of CMake required
 cmake_minimum_required(VERSION 3.10)
 # Project name and version
-project(sudoSolve VERSION 1.0)
+project(GenericPuzzleSolver VERSION 1.0)
 # Specify a C++ standard
 set(CMAKE_CXX_STANDARD 17)
 # Require cmake to use the above C++ standard
@@ -15,34 +15,32 @@ set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
 # Specify runtime search paths for target files
 # $ORIGIN is the absolute path to the folder containing the executable
 set(CMAKE_INSTALL_RPATH "$ORIGIN/../lib")
-# ==============================================================================
 
-# ===================== EXTERNAL DEPENDENCY CONFIGURATION ======================
+####################### External Dependency Configuration ######################
 find_package(Boost REQUIRED COMPONENTS program_options)
-# ==============================================================================
 
-# ====================== LOCAL DEPENDENCY CONFIGURATION ========================
+######################## Local Dependency Configuration ########################
 # Define include directory
 set(INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
 # Copy configuration header file
-configure_file("${INCLUDE_DIR}/sudoSolveConfig.h.in" sudoSolveConfig.h)
+configure_file("${INCLUDE_DIR}/GenericPuzzleSolverConfig.h.in" GenericPuzzleSolverConfig.h)
 # Define source directory
 set(SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/source")
-# Define source files for sudoSolve target
-file(GLOB sudoSolve_SOURCES "${SOURCE_DIR}/*.cpp")
-# ==============================================================================
+# Define source files for GPS target
+file(GLOB GPS_SOURCES "${SOURCE_DIR}/*.cpp")
 
-# ========================= EXECUTABLE CONFIGURATION ===========================
+########################### Executable Configuration ###########################
 # Define the executable with the top-level source files
-add_executable(sudoSolve ${sudoSolve_SOURCES})
-# Ensure the source library (i.e., the files in the source directory) get built
-add_subdirectory(source)
+add_executable(GPS ${GPS_SOURCES})
+# Add subdirectories to the build
+add_subdirectory(leetcode)
+add_subdirectory(sudosolve)
 # Link the executable against required libraries
-target_link_libraries(sudoSolve PRIVATE
-                      source # link the source directory to the executable
-                      Boost::program_options) # link Boost::program_options to the executable
+target_link_libraries(GPS PRIVATE
+                      Boost::program_options
+                      leetcode
+                      sudosolve)
 # Include directories
-target_include_directories(sudoSolve PUBLIC
+target_include_directories(GPS PUBLIC
                            "${PROJECT_BINARY_DIR}"
                            "${PROJECT_SOURCE_DIR}/include")
-# ==============================================================================
