@@ -6,6 +6,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build release image
-        run: docker build --tag sudosolve:release .
+        run: docker build --tag genericpuzzlesolver:release .
       - name: Run application
-        run: docker run sudosolve:release
+        run: docker run genericpuzzlesolver:release
