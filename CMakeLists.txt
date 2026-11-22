@@ -2,7 +2,7 @@
 # Minimum version of CMake required
 cmake_minimum_required(VERSION 3.10)
 # Project name and version
-project(GenericPuzzleSolver VERSION 1.0)
+project(GenericPuzzleSolver VERSION 0.1.0)
 # Specify a C++ standard
 set(CMAKE_CXX_STANDARD 17)
 # Require cmake to use the above C++ standard

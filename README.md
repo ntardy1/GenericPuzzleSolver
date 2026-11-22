@@ -6,6 +6,9 @@ Generic Puzzle Solver is a containerized, command-line application for solving p
 - [`git`](https://git-scm.com/) (to clone the repository)
 - [`Docker`](https://www.docker.com/) (to build & run the container(s))
 
+## Versioning
+See [VERSIONING.md](VERSIONING.md) for the project's versioning policy.
+
 ## Build (Release)
 ``` bash
 docker build -t genericpuzzlesolver:release .
