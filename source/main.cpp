@@ -9,7 +9,7 @@
 #include <vector>
 
 // Local Headers
-#include "sudoSolveConfig.h"
+#include "GenericPuzzleSolverConfig.h"
 #include "puzzle.hpp"
 
 int main(int argc, char **argv){
@@ -54,8 +54,9 @@ int main(int argc, char **argv){
 
     Puzzle puzzle; // instantiate Puzzle object with default constructor
 
-    std::cout << "sudoSolve Version: v" << sudoSolve_VERSION_MAJOR << "." \
-                                        << sudoSolve_VERSION_MINOR << std::endl;
+    std::cout << "GenericPuzzleSolver Version: v"
+              << GENERIC_PUZZLE_SOLVER_VERSION_MAJOR << "."
+              << GENERIC_PUZZLE_SOLVER_VERSION_MINOR << std::endl;
 
     if (!puzzle.populate_board(rows)) {
         return -1;
